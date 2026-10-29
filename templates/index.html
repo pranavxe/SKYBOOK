@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f9ff">
+    <meta name="description" content="SKYBOOK — a student flight reservation demonstration using searching and sorting algorithms.">
+    <title>SKYBOOK | Explore Beyond Boundaries</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</head>
+
+<body>
+    <header class="site-header" id="site-header">
+        <a class="brand" href="#home" aria-label="SKYBOOK home">
+            <span class="brand-mark" aria-hidden="true">✈</span>
+            <span class="brand-copy">
+                <strong>SKYBOOK</strong>
+                <small>EXPLORE BEYOND BOUNDARIES</small>
+            </span>
+        </a>
+
+        <button class="menu-toggle" id="menu-toggle"
+                type="button" aria-label="Open navigation"
+                aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+            <a href="#discover">Discover</a>
+            <a href="#flight-search">Find flights</a>
+            <a href="#flights">Flight collection</a>
+            <a href="#algorithms">DSA lab</a>
+            <a class="nav-cta" href="#flight-search">Start exploring <span>↗</span></a>
+        </nav>
+    </header>
+
+    <main id="home">
+        <!-- HERO -->
+        <section class="hero" id="discover">
+            <div class="hero-image" aria-hidden="true"></div>
+            <div class="hero-shade" aria-hidden="true"></div>
+            <div class="hero-sky-glow" aria-hidden="true"></div>
+
+            <div class="hero-cloud hero-cloud-one" aria-hidden="true"></div>
+            <div class="hero-cloud hero-cloud-two" aria-hidden="true"></div>
+
+            <div class="hero-inner page-container">
+                <div class="hero-copy">
+                    <div class="eyebrow hero-eyebrow">
+                        <span class="live-dot"></span>
+                        YOUR NEXT JOURNEY STARTS HERE
+                    </div>
+
+                    <h1>
+                        Your Journey Begins
+                        <span>Above the Clouds.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        From runway to horizon, your next great adventure starts here.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#flight-search">
+                            Start Exploring <span aria-hidden="true">↗</span>
+                        </a>
+                        <a class="button button-glass" href="#flights">
+                            Explore Flights <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+
+                    <div class="hero-note">
+                        <span class="hero-note-icon" aria-hidden="true">✦</span>
+                        A student-built flight reservation experience
+                    </div>
+                </div>
+
+                <div class="hero-aviation" aria-hidden="true">
+                    <div class="aviation-label">
+                        <span class="aviation-label-line"></span>
+                        SKYBOOK AVIATION
+                    </div>
+
+                    <div class="flight-trail flight-trail-one"></div>
+                    <div class="flight-trail flight-trail-two"></div>
+
+                    <div class="hero-plane">
+                        <span>✈</span>
+                    </div>
+
+                    <div class="aviation-caption">
+                        <span>THE WORLD AWAITS</span>
+                        <span>EXPLORE BEYOND BOUNDARIES</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-bottom page-container" aria-hidden="true">
+                <span>01 — DISCOVER</span>
+                <span class="hero-scroll-label">SCROLL TO EXPLORE <span>↓</span></span>
+            </div>
+        </section>
+
+        <!-- SEARCH -->
+        <section class="search-section section-space" id="flight-search">
+            <div class="page-container">
+                <div class="section-heading search-heading">
+                    <div>
+                        <p class="eyebrow">PLAN YOUR NEXT ESCAPE</p>
+                        <h2>Where to <span>next?</span></h2>
+                        <p class="section-description">
+                            Choose your route and explore our sample flight collection.
+                        </p>
+                    </div>
+                    <div class="search-heading-mark" aria-hidden="true">✈</div>
+                </div>
+
+                <div class="search-panel">
+                    <div class="trip-tabs" role="group" aria-label="Trip type">
+                        <button type="button" class="trip-tab is-active"
+                                data-trip="one-way" aria-pressed="true">One way</button>
+                        <button type="button" class="trip-tab"
+                                data-trip="round-trip" aria-pressed="false">Round trip</button>
+                    </div>
+
+                    <form id="flight-search-form">
+                        <div class="search-fields">
+                            <label class="field-group route-field" for="source">
+                                <span class="field-label">FROM</span>
+                                <span class="field-control">
+                                    <span class="field-icon" aria-hidden="true">↗</span>
+                                    <select id="source" name="source" required>
+                                        <option value="">Choose departure</option>
+                                        <option>Mumbai</option>
+                                        <option>Pune</option>
+                                        <option>Delhi</option>
+                                        <option>Bengaluru</option>
+                                        <option>Goa</option>
+                                        <option>Hyderabad</option>
+                                    </select>
+                                </span>
+                            </label>
+
+                            <button class="swap-button" id="swap-cities" type="button"
+                                    aria-label="Swap departure and destination">
+                                <span aria-hidden="true">⇄</span>
+                            </button>
+
+                            <label class="field-group route-field" for="destination">
+                                <span class="field-label">TO</span>
+                                <span class="field-control">
+                                    <span class="field-icon" aria-hidden="true">⌖</span>
+                                    <select id="destination" name="destination" required>
+                                        <option value="">Choose destination</option>
+                                        <option>Mumbai</option>
+                                        <option>Pune</option>
+                                        <option>Delhi</option>
+                                        <option>Bengaluru</option>
+                                        <option>Goa</option>
+                                        <option>Hyderabad</option>
+                                    </select>
+                                </span>
+                            </label>
+
+                            <label class="field-group" for="departure-date">
+                                <span class="field-label">DEPARTURE</span>
+                                <span class="field-control">
+                                    <span class="field-icon" aria-hidden="true">▦</span>
+                                    <input id="departure-date" name="departure-date"
+                                           type="date" required>
+                                </span>
+                            </label>
+
+                            <label class="field-group return-field" id="return-field"
+                                   for="return-date" hidden>
+                                <span class="field-label">RETURN</span>
+                                <span class="field-control">
+                                    <span class="field-icon" aria-hidden="true">▦</span>
+                                    <input id="return-date" name="return-date" type="date">
+                                </span>
+                            </label>
+
+                            <label class="field-group" for="travellers">
+                                <span class="field-label">TRAVELLERS</span>
+                                <span class="field-control">
+                                    <span class="field-icon" aria-hidden="true">♙</span>
+                                    <select id="travellers" name="travellers">
+                                        <option value="1">1 traveller</option>
+                                        <option value="2">2 travellers</option>
+                                        <option value="3">3 travellers</option>
+                                        <option value="4">4 travellers</option>
+                                        <option value="5">5 travellers</option>
+                                        <option value="6">6 travellers</option>
+                                    </select>
+                                </span>
+                            </label>
+
+                            <label class="field-group" for="travel-class">
+                                <span class="field-label">TRAVEL CLASS</span>
+                                <span class="field-control">
+                                    <span class="field-icon" aria-hidden="true">◇</span>
+                                    <select id="travel-class" name="travel-class">
+                                        <option value="Economy">Economy</option>
+                                        <option value="Premium Economy">Premium Economy</option>
+                                        <option value="Business">Business</option>
+                                    </select>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="search-bottom">
+                            <label class="nonstop-option" for="nonstop-only">
+                                <input id="nonstop-only" type="checkbox">
+                                <span class="custom-check" aria-hidden="true"></span>
+                                <span>Non-stop sample flights only</span>
+                            </label>
+
+                            <button class="button button-primary search-button" type="submit">
+                                <span aria-hidden="true">⌕</span>
+                                Search flights
+                            </button>
+                        </div>
+
+                        <p class="form-error" id="search-error" role="alert" hidden></p>
+                    </form>
+                </div>
+
+                <p class="search-disclaimer">
+                    <span aria-hidden="true">ⓘ</span>
+                    This is a college demonstration. Dates and travel class are for interface demonstration only.
+                </p>
+            </div>
+        </section>
+
+        <!-- FLIGHTS -->
+        <section class="flights-section section-space" id="flights">
+            <div class="page-container">
+                <div class="section-heading flights-heading">
+                    <div>
+                        <p class="eyebrow">YOUR NEXT ADVENTURE</p>
+                        <h2>Explore available <span>flights.</span></h2>
+                        <p class="section-description">
+                            Compare routes, review sample fares and choose your next journey.
+                        </p>
+                    </div>
+                    <div class="results-count" id="results-count">06 <span>sample flights</span></div>
+                </div>
+
+                <div class="flight-toolbar">
+                    <div class="toolbar-copy">
+                        <strong>Flight collection</strong>
+                        <span id="results-summary" aria-live="polite">
+                            Browse all sample flights.
+                        </span>
+                    </div>
+
+                    <div class="toolbar-controls">
+                        <label class="sort-control" for="sort-by">
+                            <span>Sort by</span>
+                            <select id="sort-by">
+                                <option value="default">Recommended</option>
+                                <option value="fare-asc">Lowest fare</option>
+                                <option value="fare-desc">Highest fare</option>
+                                <option value="seats-desc">Most seats</option>
+                                <option value="flight-asc">Flight number</option>
+                            </select>
+                        </label>
+
+                        <button class="reset-button" id="reset-flights" type="button">
+                            Reset filters
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flight-list" id="flight-list" aria-live="polite">
+                    <div class="loading-state">Preparing your flight collection…</div>
+                </div>
+
+                <div class="demo-notice">
+                    <span class="notice-icon" aria-hidden="true">ⓘ</span>
+                    <p>
+                        <strong>Demo environment</strong>
+                        All fares, routes and seat counts are sample project data.
+                        Bookings do not create real airline reservations.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DSA -->
+        <section class="algorithms-section section-space" id="algorithms">
+            <div class="page-container">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">THE LOGIC BEHIND SKYBOOK</p>
+                        <h2>Travel meets <span>data structures.</span></h2>
+                        <p class="section-description">
+                            Explore how searching, sorting and seat management work in this project.
+                        </p>
+                    </div>
+                    <div class="dsa-heading-icon" aria-hidden="true">{ }</div>
+                </div>
+
+                <div class="algorithm-cards">
+                    <article class="algorithm-card">
+                        <div class="algorithm-icon search-algorithm-icon" aria-hidden="true">⌕</div>
+                        <p class="algorithm-index">ALGORITHM 01</p>
+                        <h3>Linear Search</h3>
+                        <p>Check the sample flight collection to find flights matching a route.</p>
+                        <span class="algorithm-tag">Sequential checking</span>
+                    </article>
+
+                    <article class="algorithm-card">
+                        <div class="algorithm-icon sort-algorithm-icon" aria-hidden="true">↕</div>
+                        <p class="algorithm-index">ALGORITHM 02</p>
+                        <h3>Sorting</h3>
+                        <p>Reorder sample flights by fare, available seats or flight number.</p>
+                        <span class="algorithm-tag">Compare and reorder</span>
+                    </article>
+
+                    <article class="algorithm-card">
+                        <div class="algorithm-icon seat-algorithm-icon" aria-hidden="true">▦</div>
+                        <p class="algorithm-index">DATA MANAGEMENT</p>
+                        <h3>Seat Management</h3>
+                        <p>Validate the requested seats and prevent demo bookings beyond availability.</p>
+                        <span class="algorithm-tag">Capacity validation</span>
+                    </article>
+                </div>
+
+                <div class="dsa-lab">
+                    <div class="lab-intro">
+                        <div class="lab-chip"><span></span> INTERACTIVE LAB</div>
+                        <h3>See the algorithms in action.</h3>
+                        <p>
+                            Try a route search or change the sorting rule. The results below
+                            use the same sample collection as the flight cards.
+                        </p>
+
+                        <div class="lab-stat-row">
+                            <div class="lab-stat">
+                                <strong id="lab-total">6</strong>
+                                <span>Sample records</span>
+                            </div>
+                            <div class="lab-stat">
+                                <strong id="lab-matches">6</strong>
+                                <span>Current matches</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-console">
+                        <div class="console-topbar">
+                            <div class="console-dots" aria-hidden="true">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span>skybook_algorithm_lab.js</span>
+                            <span class="console-language">JAVASCRIPT</span>
+                        </div>
+
+                        <div class="lab-controls">
+                            <label for="lab-route">Search by destination route</label>
+                            <div class="lab-input-row">
+                                <select id="lab-route">
+                                    <option value="">All sample routes</option>
+                                    <option value="Mumbai|Delhi">Mumbai → Delhi</option>
+                                    <option value="Pune|Bengaluru">Pune → Bengaluru</option>
+                                    <option value="Delhi|Mumbai">Delhi → Mumbai</option>
+                                    <option value="Mumbai|Goa">Mumbai → Goa</option>
+                                    <option value="Bengaluru|Hyderabad">Bengaluru → Hyderabad</option>
+                                    <option value="Pune|Delhi">Pune → Delhi</option>
+                                </select>
+                                <button type="button" class="button button-primary lab-run-button"
+                                        id="lab-run">Run search</button>
+                            </div>
+
+                            <label for="lab-sort">Sort these results</label>
+                            <select id="lab-sort" class="lab-sort-select">
+                                <option value="default">Original order</option>
+                                <option value="fare-asc">Fare: low to high</option>
+                                <option value="fare-desc">Fare: high to low</option>
+                                <option value="seats-desc">Available seats</option>
+                                <option value="flight-asc">Flight number</option>
+                            </select>
+                        </div>
+
+                        <div class="code-preview" aria-label="Example algorithm pseudocode">
+                            <p><span>01</span> <span class="code-purple">function</span> <span class="code-cyan">searchFlights</span>(flights, route) {</p>
+                            <p><span>02</span> &nbsp; <span class="code-purple">return</span> flights.filter(flight <span class="code-purple">=&gt;</span></p>
+                            <p><span>03</span> &nbsp; &nbsp; flight.source === route.source</p>
+                            <p><span>04</span> &nbsp; &nbsp; &amp;&amp; flight.destination === route.destination</p>
+                            <p><span>05</span> &nbsp; );</p>
+                            <p><span>06</span> }</p>
+                        </div>
+
+                        <div class="lab-output">
+                            <div class="lab-output-heading">
+                                <span>OUTPUT</span>
+                                <span id="lab-status">Ready to run</span>
+                            </div>
+                            <div id="lab-results" class="lab-results" aria-live="polite">
+                                Select a route and run the search.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT -->
+        <section class="project-section section-space" id="about">
+            <div class="page-container project-inner">
+                <div class="project-symbol" aria-hidden="true">✈</div>
+                <div class="project-copy">
+                    <p class="eyebrow">BUILT AS A STUDENT PROJECT</p>
+                    <h2>A simple idea.<br><span>A smarter journey.</span></h2>
+                    <p>
+                        SKYBOOK demonstrates how searching, sorting and seat management
+                        can power a basic flight reservation interface. The project combines
+                        a responsive web interface with interactive sample data.
+                    </p>
+                    <div class="technology-list">
+                        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Flask</span><span>DSA</span>
+                    </div>
+                </div>
+                <a class="button button-primary project-button" href="#flight-search">
+                    Try the demo <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="page-container footer-main">
+            <a class="brand footer-brand" href="#home">
+                <span class="brand-mark" aria-hidden="true">✈</span>
+                <span class="brand-copy">
+                    <strong>SKYBOOK</strong>
+                    <small>EXPLORE BEYOND BOUNDARIES</small>
+                </span>
+            </a>
+
+            <p>Made for learning. Designed for discovery.</p>
+
+            <a class="back-to-top" href="#home">Back to top ↑</a>
+        </div>
+        <div class="page-container footer-bottom">
+            <span>SKYBOOK — Flight Reservation System</span>
+            <span>Academic demonstration · Not a real booking service</span>
+        </div>
+    </footer>
+
+    <!-- BOOKING MODAL -->
+    <div class="modal-backdrop" id="booking-modal" hidden>
+        <section class="booking-modal" role="dialog" aria-modal="true"
+                 aria-labelledby="booking-title" aria-describedby="booking-description">
+            <button type="button" class="modal-close" id="modal-close"
+                    aria-label="Close booking dialog">×</button>
+
+            <div class="modal-top-icon" aria-hidden="true">✈</div>
+            <p class="eyebrow">YOUR JOURNEY, YOUR WAY</p>
+            <h2 id="booking-title">Review your flight</h2>
+            <p id="booking-description" class="modal-description">
+                Check the sample flight details before confirming your demo booking.
+            </p>
+
+            <div id="booking-flight-details" class="booking-flight-details"></div>
+
+            <div class="booking-summary">
+                <div><span>Travellers</span><strong id="modal-travellers">1</strong></div>
+                <div><span>Travel class</span><strong id="modal-class">Economy</strong></div>
+                <div><span>Sample total</span><strong id="modal-total">₹0</strong></div>
+            </div>
+
+            <p class="modal-disclaimer">
+                This action only updates sample seat counts in this browser session.
+                It does not reserve a real flight.
+            </p>
+
+            <p class="modal-error" id="modal-error" role="alert" hidden></p>
+
+            <div class="modal-actions" id="modal-actions">
+                <button type="button" class="button button-outline" id="cancel-booking">Go back</button>
+                <button type="button" class="button button-primary" id="confirm-booking">
+                    Confirm demo booking
+                </button>
+            </div>
+
+            <div class="ticket-confirmation" id="ticket-confirmation" hidden>
+                <div class="ticket-success-mark" aria-hidden="true">✓</div>
+                <p class="eyebrow">DEMO BOOKING COMPLETE</p>
+                <h3>Your sample ticket is ready.</h3>
+                <p id="ticket-message"></p>
+                <div class="ticket-reference">
+                    <span>DEMO REFERENCE</span>
+                    <strong id="ticket-reference"></strong>
+                </div>
+                <button type="button" class="button button-primary" id="finish-booking">
+                    Done
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
